@@ -1,1 +1,156 @@
-hello
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>zhangyutao-ruankao</title>
+    <!-- 内嵌 CSS 样式 -->
+    <style>
+        /* 基本样式重置和页面设置 */
+        body {
+            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+            background-color: #f4f7f6; /* 淡灰色背景 */
+            color: #333;
+        }
+
+        /* 1. 顶部标题样式 */
+        .main-header {
+            text-align: center; /* 文本居中 */
+            padding: 25px 0; /* 上下内边距 */
+            background-color: #ffffff; /* 白色背景 */
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 底部阴影 */
+            margin-bottom: 30px; /* 与下方卡片容器的间距 */
+        }
+
+        .main-header h1 {
+            margin: 0; /* 去除 h1 的默认外边距 */
+            font-size: 2em; /* 字体大小 */
+            color: #2c3e50; /* 深蓝灰色 */
+        }
+
+        /* 2. 卡片容器样式 (使用 Grid 布局实现一行约5个) */
+        .card-container {
+            display: grid;
+            /*
+               - repeat(auto-fit, minmax(180px, 1fr)):
+                 - auto-fit: 自动调整列数以适应容器宽度
+                 - minmax(180px, 1fr): 每列最小宽度180px，最大宽度为1份可用空间
+                 这样可以实现在不同屏幕宽度下，每行大约显示4-6个卡片
+            */
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 25px; /* 卡片之间的间隙 */
+            padding: 0 30px 30px 30px; /* 容器内边距 (左右下) */
+            max-width: 1200px; /* 限制最大宽度，使其在大屏幕上不会过宽 */
+            margin: 0 auto; /* 居中显示容器 */
+        }
+
+        /* 卡片链接样式 (去除下划线等) */
+        .card-link {
+            text-decoration: none; /* 去除链接下划线 */
+            color: inherit; /* 继承父元素颜色 */
+            display: block; /* 让链接占据整个卡片区域 */
+            transition: transform 0.3s ease-in-out; /* 为悬停效果添加平滑过渡 */
+        }
+
+        /* 卡片本身样式 */
+        .card {
+            background-color: #ffffff; /* 白色背景 */
+            border-radius: 8px; /* 圆角 */
+            padding: 30px 20px; /* 内边距 */
+            text-align: center; /* 内容居中 */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+            min-height: 100px; /* 最小高度，确保卡片不会太扁 */
+            display: flex; /* 使用 Flexbox */
+            justify-content: center; /* 水平居中 */
+            align-items: center; /* 垂直居中 */
+            font-size: 1.8em; /* 数字的字体大小 */
+            font-weight: bold; /* 字体加粗 */
+            color: #3498db; /* 数字颜色 (蓝色) */
+            /* 注意：平滑过渡效果放在父级 .card-link 上效果更好，因为旋转的是整个链接块 */
+            /* 如果要放在这里，可以取消注释： transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out; */
+        }
+
+        /* 3. 卡片鼠标悬停效果 */
+        .card-link:hover .card {
+            /* 略微旋转一个角度 */
+            transform: rotate(3deg);
+            /* 可以加一些其他效果，例如阴影加深 */
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+            background-color: #eef5ff; /* 悬停时背景变淡蓝 */
+        }
+
+        /* 响应式调整：屏幕较窄时减少左右内边距 */
+        @media (max-width: 600px) {
+            .card-container {
+                padding: 0 15px 15px 15px;
+                gap: 15px;
+                /* 在小屏幕上，可以调整最小宽度让每行显示更少卡片 */
+                /* grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); */
+            }
+            .main-header h1 {
+                font-size: 1.5em;
+            }
+            .card {
+                padding: 20px 15px;
+                font-size: 1.5em;
+                min-height: 80px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 1. 正上方的标题 -->
+    <header class="main-header">
+        <h1>zhangyutao-ruankao</h1>
+    </header>
+
+    <!-- 2. 卡片选项卡容器 -->
+    <main class="card-container">
+        <!-- 卡片示例 - 你可以根据需要增加或修改 -->
+        <!-- 注意: href 指向你需要跳转的二级页面，如果暂时没有，可以用 "#" 代替 -->
+        <a href="page1.html" class="card-link">
+            <div class="card">1</div>
+        </a>
+        <a href="page2.html" class="card-link">
+            <div class="card">2</div>
+        </a>
+        <a href="page3.html" class="card-link">
+            <div class="card">3</div>
+        </a>
+        <a href="page4.html" class="card-link">
+            <div class="card">4</div>
+        </a>
+        <a href="page5.html" class="card-link">
+            <div class="card">5</div>
+        </a>
+        <a href="page6.html" class="card-link">
+            <div class="card">6</div>
+        </a>
+        <a href="page7.html" class="card-link">
+            <div class="card">7</div>
+        </a>
+        <a href="page8.html" class="card-link">
+            <div class="card">8</div>
+        </a>
+        <a href="page9.html" class="card-link">
+            <div class="card">9</div>
+        </a>
+        <a href="page10.html" class="card-link">
+            <div class="card">10</div>
+        </a>
+        <!-- 你可以继续添加更多卡片 -->
+        <!--
+        <a href="page11.html" class="card-link">
+            <div class="card">11</div>
+        </a>
+        <a href="page12.html" class="card-link">
+            <div class="card">12</div>
+        </a>
+        -->
+
+    </main>
+
+</body>
+</html>
