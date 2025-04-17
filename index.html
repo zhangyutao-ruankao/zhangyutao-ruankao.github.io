@@ -3,154 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>zhangyutao-ruankao</title>
+    <title>zhangyutao-ruankao - Tech Style Text Cards</title>
+    <!-- Google Fonts: Roboto Mono (for body) & Roboto (for cards) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+
     <!-- 内嵌 CSS 样式 -->
     <style>
-        /* 基本样式重置和页面设置 */
-        body {
-            margin: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-            background-color: #f4f7f6; /* 淡灰色背景 */
-            color: #333;
+        /* Basic Reset & Tech Style Base */
+        *, *::before, *::after {
+            box-sizing: border-box;
         }
 
-        /* 1. 顶部标题样式 */
+        body {
+            margin: 0;
+            background-color: #0a192f;
+            color: #ccd6f6;
+            /* Body uses Monospace */
+            font-family: 'Roboto Mono', monospace;
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        /* 1. Header Styling */
         .main-header {
-            text-align: center; /* 文本居中 */
-            padding: 25px 0; /* 上下内边距 */
-            background-color: #ffffff; /* 白色背景 */
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 底部阴影 */
-            margin-bottom: 30px; /* 与下方卡片容器的间距 */
+            text-align: center;
+            padding: 20px 0;
+            background-color: transparent;
+            box-shadow: none;
+            border-bottom: 1px solid #64ffda; /* Accent color */
+            margin-bottom: 60px;
         }
 
         .main-header h1 {
-            margin: 0; /* 去除 h1 的默认外边距 */
-            font-size: 2em; /* 字体大小 */
-            color: #2c3e50; /* 深蓝灰色 */
+            margin: 0;
+            font-size: 1.8em;
+            color: #e6f1ff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-weight: 700;
         }
 
-        /* 2. 卡片容器样式 (使用 Grid 布局实现一行约5个) */
+        /* 2. Card Container */
         .card-container {
             display: grid;
-            /*
-               - repeat(auto-fit, minmax(180px, 1fr)):
-                 - auto-fit: 自动调整列数以适应容器宽度
-                 - minmax(180px, 1fr): 每列最小宽度180px，最大宽度为1份可用空间
-                 这样可以实现在不同屏幕宽度下，每行大约显示4-6个卡片
-            */
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 25px; /* 卡片之间的间隙 */
-            padding: 0 30px 30px 30px; /* 容器内边距 (左右下) */
-            max-width: 1200px; /* 限制最大宽度，使其在大屏幕上不会过宽 */
-            margin: 0 auto; /* 居中显示容器 */
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Slightly wider minmax */
+            gap: 40px;
+            padding: 0 40px 40px 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+            perspective: 1200px;
         }
 
-        /* 卡片链接样式 (去除下划线等) */
+        /* Card Link */
         .card-link {
-            text-decoration: none; /* 去除链接下划线 */
-            color: inherit; /* 继承父元素颜色 */
-            display: block; /* 让链接占据整个卡片区域 */
-            transition: transform 0.3s ease-in-out; /* 为悬停效果添加平滑过渡 */
+            text-decoration: none;
+            color: inherit;
+            display: block;
+            outline: none;
         }
 
-        /* 卡片本身样式 */
+        /* Card Styling */
         .card {
-            background-color: #ffffff; /* 白色背景 */
-            border-radius: 8px; /* 圆角 */
-            padding: 30px 20px; /* 内边距 */
-            text-align: center; /* 内容居中 */
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* 阴影效果 */
-            min-height: 100px; /* 最小高度，确保卡片不会太扁 */
-            display: flex; /* 使用 Flexbox */
-            justify-content: center; /* 水平居中 */
-            align-items: center; /* 垂直居中 */
-            font-size: 1.8em; /* 数字的字体大小 */
-            font-weight: bold; /* 字体加粗 */
-            color: #3498db; /* 数字颜色 (蓝色) */
-            /* 注意：平滑过渡效果放在父级 .card-link 上效果更好，因为旋转的是整个链接块 */
-            /* 如果要放在这里，可以取消注释： transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out, background-color 0.3s ease-in-out; */
+            background-color: #112240;
+            border-radius: 4px;
+            /* Add padding for text */
+            padding: 25px 20px;
+            /* Use min-height instead of fixed height */
+            min-height: 160px;
+            overflow: hidden; /* Not strictly needed for text, but good practice */
+            border: 1px solid rgba(100, 255, 218, 0.15);
+            box-shadow: none;
+             /* Center content using Flexbox */
+            display: flex;
+            flex-direction: column; /* Stack content and pseudo-element */
+            justify-content: center; /* Vertical center */
+            align-items: center;     /* Horizontal center */
+            text-align: center;      /* Center multi-line text */
+            /* Transitions */
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        box-shadow 0.4s ease-in-out,
+                        border-color 0.4s ease-in-out;
         }
 
-        /* 3. 卡片鼠标悬停效果 */
+        /* --- Card Content (The Text Itself) --- */
+        .card-content {
+            /* Use Roboto font for card text */
+            font-family: 'Roboto', sans-serif;
+            font-size: 1.15em; /* Slightly larger font */
+            font-weight: 500; /* Medium weight */
+            color: #ccd6f6; /* Default text color */
+            letter-spacing: 0.5px; /* Subtle spacing */
+            line-height: 1.4; /* Spacing for wrapped lines */
+            margin-bottom: 10px; /* Space below text before potential line */
+            position: relative; /* Needed for the ::after pseudo-element */
+            padding-bottom: 10px; /* Space for the underline effect */
+             /* Ensure text wraps */
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+            /* Text effect transitions */
+            transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+        }
+
+        /* --- Underline effect using ::after --- */
+        .card-content::after {
+            content: '';
+            position: absolute;
+            left: 50%; /* Center horizontally */
+            bottom: 0; /* Position at the bottom */
+            width: 40%; /* Width of the line */
+            height: 2px; /* Thickness of the line */
+            background-color: #64ffda; /* Accent color */
+            transform: translateX(-50%) scaleX(0); /* Start centered and hidden (scaled to 0) */
+            transform-origin: center; /* Scale from the center */
+            transition: transform 0.35s ease-in-out; /* Animate the scaling */
+        }
+
+
+        /* --- Hover Effects --- */
         .card-link:hover .card {
-            /* 略微旋转一个角度 */
-            transform: rotate(3deg);
-            /* 可以加一些其他效果，例如阴影加深 */
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-            background-color: #eef5ff; /* 悬停时背景变淡蓝 */
+            border-color: #64ffda;
+            box-shadow: 0 0 18px 4px rgba(100, 255, 218, 0.25);
+            /* transform is set by JavaScript */
         }
 
-        /* 响应式调整：屏幕较窄时减少左右内边距 */
-        @media (max-width: 600px) {
-            .card-container {
-                padding: 0 15px 15px 15px;
-                gap: 15px;
-                /* 在小屏幕上，可以调整最小宽度让每行显示更少卡片 */
-                /* grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); */
-            }
+        .card-link:hover .card-content {
+            color: #64ffda; /* Change text color to accent */
+            /* Add subtle text glow */
+            text-shadow: 0 0 8px rgba(100, 255, 218, 0.5);
+        }
+
+        .card-link:hover .card-content::after {
+            transform: translateX(-50%) scaleX(1); /* Scale the line into view */
+        }
+
+
+        /* Responsive Adjustments */
+        @media (max-width: 768px) {
             .main-header h1 {
                 font-size: 1.5em;
+                letter-spacing: 1px;
+            }
+            .card-container {
+                padding: 0 20px 30px 20px;
+                gap: 30px;
+                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             }
             .card {
+                min-height: 140px; /* Adjust min-height */
                 padding: 20px 15px;
-                font-size: 1.5em;
-                min-height: 80px;
+            }
+             .card-content {
+                font-size: 1.05em;
+            }
+            .card-link:hover .card {
+                 box-shadow: 0 0 12px 3px rgba(100, 255, 218, 0.2);
+            }
+        }
+
+        @media (max-width: 480px) {
+             .main-header h1 {
+                font-size: 1.3em;
+            }
+             .card-container {
+                grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+                gap: 25px;
+            }
+             .card {
+                min-height: 120px; /* Further adjust */
+                 padding: 15px 10px;
+            }
+            .card-content {
+                font-size: 1em;
+                line-height: 1.3;
             }
         }
     </style>
 </head>
 <body>
 
-    <!-- 1. 正上方的标题 -->
+    <!-- 1. Header -->
     <header class="main-header">
         <h1>zhangyutao-ruankao</h1>
     </header>
 
-    <!-- 2. 卡片选项卡容器 -->
+    <!-- 2. Card Container -->
     <main class="card-container">
-        <!-- 卡片示例 - 你可以根据需要增加或修改 -->
-        <!-- 注意: href 指向你需要跳转的二级页面，如果暂时没有，可以用 "#" 代替 -->
-        <a href="page1.html" class="card-link">
-            <div class="card">1</div>
+        <!-- Card Examples with Text -->
+        <a href="#" class="card-link">
+            <div class="card">
+                <div class="card-content">信息系统项目管理师</div>
+            </div>
         </a>
-        <a href="page2.html" class="card-link">
-            <div class="card">2</div>
+        <a href="#" class="card-link">
+            <div class="card">
+                 <div class="card-content">系统架构设计师</div>
+            </div>
         </a>
-        <a href="page3.html" class="card-link">
-            <div class="card">3</div>
+        <a href="#" class="card-link">
+            <div class="card">
+                 <div class="card-content">网络规划设计师</div>
+            </div>
         </a>
-        <a href="page4.html" class="card-link">
-            <div class="card">4</div>
+        <a href="#" class="card-link">
+            <div class="card">
+                 <div class="card-content">软件评测师</div>
+            </div>
         </a>
-        <a href="page5.html" class="card-link">
-            <div class="card">5</div>
+        <a href="#" class="card-link">
+            <div class="card">
+                 <div class="card-content">数据库系统工程师</div>
+            </div>
         </a>
-        <a href="page6.html" class="card-link">
-            <div class="card">6</div>
+        <a href="#" class="card-link">
+            <div class="card">
+                 <div class="card-content">系统分析师</div>
+            </div>
         </a>
-        <a href="page7.html" class="card-link">
-            <div class="card">7</div>
+        <a href="#" class="card-link">
+            <div class="card">
+                <div class="card-content">嵌入式系统设计师</div>
+            </div>
         </a>
-        <a href="page8.html" class="card-link">
-            <div class="card">8</div>
+         <a href="#" class="card-link">
+            <div class="card">
+                <div class="card-content">信息安全工程师</div>
+            </div>
         </a>
-        <a href="page9.html" class="card-link">
-            <div class="card">9</div>
+        <a href="#" class="card-link">
+            <div class="card">
+                 <div class="card-content">多媒体应用设计师</div>
+            </div>
         </a>
-        <a href="page10.html" class="card-link">
-            <div class="card">10</div>
+         <a href="#" class="card-link">
+            <div class="card">
+                 <div class="card-content">信息系统监理师</div>
+            </div>
         </a>
-        <!-- 你可以继续添加更多卡片 -->
-        <!--
-        <a href="page11.html" class="card-link">
-            <div class="card">11</div>
-        </a>
-        <a href="page12.html" class="card-link">
-            <div class="card">12</div>
-        </a>
-        -->
+        <!-- Add more cards as needed -->
 
     </main>
+
+    <!-- JavaScript for Directional Hover Effect (Remains the Same) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const cardLinks = document.querySelectorAll('.card-link');
+            const rotateAngleY = 18;
+            const rotateAngleX = 12;
+
+            cardLinks.forEach(link => {
+                const card = link.querySelector('.card');
+                if (!card) return;
+
+                link.addEventListener('mouseenter', (e) => {
+                    const rect = link.getBoundingClientRect();
+                    const mouseX = e.clientX - rect.left;
+                    const mouseY = e.clientY - rect.top;
+                    const centerX = rect.width / 2;
+                    const centerY = rect.height / 2;
+                    const distLeft = mouseX;
+                    const distRight = rect.width - mouseX;
+                    const distTop = mouseY;
+                    const distBottom = rect.height - mouseY;
+                    const minDist = Math.min(distLeft, distRight, distTop, distBottom);
+
+                    let transformStyle = '';
+
+                    if (minDist === distLeft) {
+                        transformStyle = `rotateY(${rotateAngleY}deg)`;
+                    } else if (minDist === distRight) {
+                        transformStyle = `rotateY(-${rotateAngleY}deg)`;
+                    } else if (minDist === distTop) {
+                        transformStyle = `rotateX(${rotateAngleX}deg)`;
+                    } else { // minDist === distBottom
+                        transformStyle = `rotateX(-${rotateAngleX}deg)`;
+                    }
+                    card.style.transform = transformStyle;
+                });
+
+                link.addEventListener('mouseleave', () => {
+                    card.style.transform = 'rotateY(0deg) rotateX(0deg)';
+                });
+            });
+        });
+    </script>
 
 </body>
 </html>
